@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Support Ticket System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Submit a Support Ticket</h1>
+
+    <form method="POST" action="/submit_ticket">
+        <input type="text" name="user_name" placeholder="Your Name" required><br>
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="text" name="issue_type" placeholder="Issue Type" required><br>
+        <select name="priority">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select><br>
+        <textarea name="description" placeholder="Describe the issue"></textarea><br>
+        <button type="submit">Submit Ticket</button>
+    </form>
+
+    <h2>Submitted Tickets</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th><th>Name</th><th>Issue</th><th>Priority</th><th>Status</th><th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in tickets %}
+            <tr>
+                <td>{{ t.id }}</td>
+                <td>{{ t.user_name }}</td>
+                <td>{{ t.issue_type }}</td>
+                <td>{{ t.priority }}</td>
+                <td>{{ t.status }}</td>
+                <td>{{ t.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

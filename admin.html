@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin - Ticket Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Admin Ticket Dashboard</h1>
+    <a href="/">Back to Submit</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th><th>Name</th><th>Issue</th><th>Priority</th><th>Status</th><th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in tickets %}
+            <tr>
+                <td>{{ t.id }}</td>
+                <td>{{ t.user_name }}</td>
+                <td>{{ t.issue_type }}</td>
+                <td>{{ t.priority }}</td>
+                <td>{{ t.status }}</td>
+                <td>
+                    <a href="/update_status/{{ t.id }}/Open">Open</a> |
+                    <a href="/update_status/{{ t.id }}/In Progress">In Progress</a> |
+                    <a href="/update_status/{{ t.id }}/Closed">Closed</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="/export_json">Export Tickets JSON</a>
+</body>
+</html>
